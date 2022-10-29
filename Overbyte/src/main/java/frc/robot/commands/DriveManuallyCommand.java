@@ -48,6 +48,7 @@ public class DriveManuallyCommand extends CommandBase {
 
     @Override
     public void execute() {
+        // This is getting the values from the controller.
         translationXPercent = -Constants.driveController.getRawAxis(1);
         translationYPercent = -Constants.driveController.getRawAxis(0);
         rotationPercent = -Constants.driveController.getRawAxis(4);
@@ -60,14 +61,17 @@ public class DriveManuallyCommand extends CommandBase {
             translationXPercent = 0.0;
         }
         
+        // Making sure that the robot doesn't move when the joystick is in the deadzone.
         if (Math.abs(translationYPercent) < Constants.deadzone){
             translationYPercent = 0.0;
         }
         
+        // Making sure that the robot doesn't move when the joystick is in the deadzone.
         if (Math.abs(rotationPercent) < Constants.deadzone){
             rotationPercent = 0.0;
         }
 
+        // Multiplying the translationXPercent, translationYPercent, and rotationPercent by 1.00.
         translationXPercent *= 1.00;
         translationYPercent *= 1.00;
         rotationPercent *= 1.00;
@@ -78,9 +82,9 @@ public class DriveManuallyCommand extends CommandBase {
         }
 
        
+        // This is a hack to make the robot stop looking for the target when the driver is driving.
         if ((Constants.driveController.getRawButton(Constants.readyToShootButton))) { 
             double x = vision.getPosition();
-
             if (Math.abs(x) >= Constants.visionAnglePrecision) {
                 rotationPercent = .1 * -Math.signum(x);
             }
@@ -96,6 +100,7 @@ public class DriveManuallyCommand extends CommandBase {
             translationXPercent = 0.0;
         }
         
+        // Making sure that the robot doesn't move when the joystick is in the deadzone.
         if (Math.abs(translationYPercent) < Constants.deadzone){
             translationYPercent = 0.0;
         }

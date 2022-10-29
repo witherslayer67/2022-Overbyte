@@ -56,6 +56,7 @@ public class DriveSubsystem extends SubsystemBase {
   private boolean robotOriented = false;
 
   public DriveSubsystem() {
+    // Creating a new SwerveModule object.
     flm = Mk4SwerveModuleHelper.createFalcon500(
             Mk4SwerveModuleHelper.GearRatio.L2,
             Constants.fldmPort,
@@ -91,6 +92,9 @@ public class DriveSubsystem extends SubsystemBase {
     updateAngle();
   }
 
+  /**
+   * This function checks the angle of each motor and returns a boolean value
+   */
   public void updateAngle() {
     SmartDashboard.putBoolean("FLM Angle OK", flm.checkAngle());
     SmartDashboard.putBoolean("FRM Angle OK", frm.checkAngle());
@@ -107,10 +111,20 @@ public class DriveSubsystem extends SubsystemBase {
     gyro.calibrate();
   }
 
+  /**
+   * Returns the rotation of the robot in the field.
+   * 
+   * @return The rotation of the robot
+   */
   public Rotation2d getRotation() {
     return getPose().getRotation();
   }
 
+  /**
+   * Returns the translation of the pose of the robot.
+   * 
+   * @return The translation of the pose of the robot.
+   */
   public Translation2d getTranslation(){
     return getPose().getTranslation();
   }
@@ -123,10 +137,19 @@ public class DriveSubsystem extends SubsystemBase {
     return kinematics;
   }
 
+  /**
+   * This function sets the offset pose to a new pose
+   * 
+   * @param xValue The x value of the new pose
+   * @param yValue The y value of the offset pose.
+   */
   public void resetPose(double xValue, double yValue){
     offsetPose = new Translation2d(xValue, yValue);
   }
 
+  /**
+   * This function resets the robot's pose to the given x and y coordinates
+   */
   public void resetPose(){
     resetPose(robotPose.getTranslation().getX(), robotPose.getTranslation().getY());
   }
@@ -143,14 +166,27 @@ public class DriveSubsystem extends SubsystemBase {
     return halfSpeed;
   }
 
+  /**
+   * If the robot is oriented, it will be unoriented. If the robot is unoriented, it will be oriented
+   */
   public void toggleRobotOriented(){
     robotOriented = !robotOriented;
   }
 
+  /**
+   * This function returns a boolean value that indicates whether the robot is oriented or not
+   * 
+   * @return The boolean value of robotOriented.
+   */
   public boolean isRobotOriented(){
     return robotOriented;
   }
 
+  /**
+   * This function sets the chassis speeds to the given chassis speeds.
+   * 
+   * @param chassisSpeeds The desired speeds of the robot.
+   */
   public void drive(ChassisSpeeds chassisSpeeds) {
     this.chassisSpeeds = chassisSpeeds;
   }

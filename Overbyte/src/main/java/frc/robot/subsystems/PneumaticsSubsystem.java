@@ -28,10 +28,16 @@ public class PneumaticsSubsystem extends SubsystemBase {
     shooterSolenoids = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.shooterExtendPort, Constants.shooterRetractPort);
   }
 
+  /**
+   * This function enables the digital output of the compressor.
+   */
   public void start(){
     compressor.enableDigital();
   }
 
+  /**
+   * This function disables the compressor.
+   */
   public void stop(){
     compressor.disable();
   }

@@ -19,6 +19,15 @@ public class IMUOffsetCalculator {
         this.yOffset = yOffset;
     }
 
+    /**
+     * > The function takes in the x and y position of the robot, and the angle of the robot, and
+     * returns the x and y position of the camera relative to the robot
+     * 
+     * @param xPosition The x position of the robot
+     * @param yPosition The y position of the robot
+     * @param angle The angle of the robot in degrees
+     * @return A Translation2d object with the new x and y coordinates.
+     */
     public Translation2d calculateOffset(double xPosition, double yPosition, double angle){
         double newX = xPosition - ((xOffset * Math.cos(angle * Math.PI / 180)) - (yOffset * Math.sin(angle * Math.PI / 180)));
         double newY = yPosition - ((xOffset * Math.sin(angle * Math.PI / 180)) + (yOffset * Math.cos(angle * Math.PI / 180)));

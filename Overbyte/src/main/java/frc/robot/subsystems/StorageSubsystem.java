@@ -46,7 +46,11 @@ public class StorageSubsystem extends SubsystemBase {
   public boolean getBottomProxSensor(){
     return !bottomProxSensor.get();
   }
-
+/**
+ * Sets the speed of the wheel to the speedPercent value.
+ * 
+ * @param speedPercent The speed of the wheel, from -1 to 1.
+ */
   public void setWheelSpeed(double speedPercent){
     wheel.set(TalonFXControlMode.PercentOutput, speedPercent);
   }
@@ -60,6 +64,10 @@ public class StorageSubsystem extends SubsystemBase {
     belt.set(TalonSRXControlMode.PercentOutput, speedPercent);
   }
 
+  /**
+   * If the top proximity sensor is triggered, run the intake wheel at 10% power, otherwise run the
+   * intake wheel at 0% power
+   */
   public void intake(){
     if (getTopProxSensor()){
       wheel.set(TalonFXControlMode.PercentOutput, -0.1);
@@ -94,10 +102,16 @@ public class StorageSubsystem extends SubsystemBase {
     setWheelSpeed(-0.25);
   }
 
+  /**
+   * It stops the wheel.
+   */
   public void wheelStop(){
     setWheelSpeed(0.0);
   }
 
+  /**
+   * > This function sets the speed of the belt to -0.25
+   */
   public void beltFeed(){
     setBeltSpeed(-0.25);
   }
@@ -106,10 +120,16 @@ public class StorageSubsystem extends SubsystemBase {
     setBeltSpeed(-0.5);
   }
 
+  /**
+   * This function sets the speed of the belt to 0.30
+   */
   public void beltReverse(){
     setBeltSpeed(0.30);
   }
 
+  /**
+   * > This function sets the speed of the belt to 0.0
+   */
   public void beltStop(){
     setBeltSpeed(0.0);
   }

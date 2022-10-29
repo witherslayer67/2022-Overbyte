@@ -35,11 +35,20 @@ public class IntakeSubsystem extends SubsystemBase {
     stopIntake();
   }
 
+  /**
+   * This function returns the value of the beam break sensor
+   * 
+   * @return The value of the beam break sensor.
+   */
   public boolean getBeamBreakSensor(){
-
-    return !beamBreakSensor.get();// Inverting the value as the sensor returns true when no ball is in the way 
+    return !beamBreakSensor.get(); // Inverting the value as the sensor returns true when no ball is in the way 
   }
 
+  /**
+   * > This function returns true if the intake is extended, and false if it is not
+   * 
+   * @return The intakeSolenoids.get() is being returned.
+   */
   public boolean isExtended(){
     return (intakeSolenoids.get() == Value.kForward) ? true : false;
   }
@@ -49,23 +58,40 @@ public class IntakeSubsystem extends SubsystemBase {
     intaking = true;
   }
 
+  /**
+   * This function sets the intake speed to 1.0, which is the reverse direction
+   */
   public void reverseIntake(){
     setIntakeSpeed(1.0);
   }
 
+  /**
+   * This function sets the intake speed to 0.0 and sets the intaking boolean to false
+   */
   public void stopIntake(){
     setIntakeSpeed(0.0);
     intaking = false;
   }
 
+  /**
+   * This function sets the speed of the intake motor to the speedPercent parameter
+   * 
+   * @param speedPercent The speed of the motor, from -1 to 1.
+   */
   public void setIntakeSpeed(double speedPercent){
     intakeMotor.set(TalonFXControlMode.PercentOutput, speedPercent);
   }
 
+  /**
+   * This function sets the intake solenoids to extend the intake.
+   */
   public void extend(){
     intakeSolenoids.set(Value.kForward);
   }
 
+  /**
+   * This function sets the intake solenoids to reverse, which retracts the intake
+   */
   public void retract(){
     intakeSolenoids.set(Value.kReverse);
   }
@@ -75,6 +101,11 @@ public class IntakeSubsystem extends SubsystemBase {
     stopIntake();
   }
 
+  /**
+   * This function returns a boolean value that is true if the robot is intaking and false if it is not
+   * 
+   * @return The boolean value of intaking.
+   */
   public boolean isIntaking(){
     return intaking;
   }

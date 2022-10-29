@@ -17,10 +17,20 @@ public class VisionConfiguration {
         this.distance = distance;
     }
     
+    /**
+     * This function returns the angle of the object.
+     * 
+     * @return The angle of the object.
+     */
     public double getAngle() {
         return angle;
     }
 
+    /**
+     * This function returns the distance between the current location and the destination.
+     * 
+     * @return The distance between the two points.
+     */
     public double getDistance() {
         return distance;
     }

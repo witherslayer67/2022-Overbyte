@@ -94,22 +94,41 @@ public class VisionSubsystem extends SubsystemBase {
     visionTarget.update(lastGoodPos, lastGoodAngle);
   }
  
+  /**
+   * > This function returns the angle of the target in degrees
+   * 
+   * @return The angle of the target.
+   */
   public double getAngle() {
     return visionTarget.getY();
   }
 
+  /**
+   * This function returns the x position of the vision target.
+   * 
+   * @return The x position of the vision target.
+   */
   public double getPosition() {
     return visionTarget.getX();
   }
 
+  /**
+   * This function clears the values of the visionTarget object
+   */
   public void resetTarget(){
     visionTarget.clearValues();
   }
 
+  /**
+   * Set the value of the 'snapshot' entry to 1.
+   */
   public void takeSnapshot(){
     table.getEntry("snapshot").setNumber(1);
   }
 
+  /**
+   * It sets the value of the "snapshot" entry in the table to 0
+   */
   public void resetSnapshot(){
     table.getEntry("snapshot").setNumber(0);
   }

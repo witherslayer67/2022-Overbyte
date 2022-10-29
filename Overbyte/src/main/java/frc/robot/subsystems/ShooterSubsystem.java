@@ -59,6 +59,7 @@ public class ShooterSubsystem extends SubsystemBase {
 		topShooterMotor.configPeakOutputForward(1);
 		topShooterMotor.configPeakOutputReverse(-1);
 
+    // Setting the nominal and peak output of the motor.
     bottomShooterMotor.configNominalOutputForward(0);
 		bottomShooterMotor.configNominalOutputReverse(0);
 		bottomShooterMotor.configPeakOutputForward(1);
@@ -133,6 +134,11 @@ public class ShooterSubsystem extends SubsystemBase {
     bottomShooterMotor.set(TalonFXControlMode.PercentOutput, 0.0); 
   }
 
+  /**
+   * If the shooter solenoids are in the forward position, return true, otherwise return false
+   * 
+   * @return The state of the hood.
+   */
   public boolean isHoodUp(){
     return (shooterSolenoids.get() == Value.kForward) ? true : false;
   }
@@ -148,22 +154,43 @@ public class ShooterSubsystem extends SubsystemBase {
 
   }
 
+  /**
+   * This function sets the topTunerRange variable to the value passed in
+   * 
+   * @param value The value to set the top tuner range to.
+   */
   public void setTopTunerRange(double value){
     topTunerRange = value;
   }
 
+  /**
+   * This function sets the bottom tuner range
+   * 
+   * @param value The value to set the parameter to.
+   */
   public void setBottomTunerRange(double value){
     bottomTunerRange = value;
   }
 
+  /**
+   * > The topTunerValue is set to the current topTunerValue plus the value of the left joystick's
+   * y-axis multiplied by the topTunerRange
+   */
   public void setTopTunerValue(){
     topTunerValue += (Constants.calibrateController.getRawAxis(1) * topTunerRange);
   }
 
+  /**
+   * The bottom tuner value is increased by the value of the right joystick's y-axis multiplied by the
+   * bottom tuner range
+   */
   public void setBottomTunerValue(){
     bottomTunerValue += (Constants.calibrateController.getRawAxis(3) * bottomTunerRange);
   }
 
+  /**
+   * This function resets the value of the top tuner to 0.0
+   */
   public void resetTopTunerValue(){
     topTunerValue = 0.0;
   }
@@ -175,6 +202,11 @@ public class ShooterSubsystem extends SubsystemBase {
     bottomTunerValue = 0.0;
   }
 
+  /**
+   * This function returns the value of the top card in the deck
+   * 
+   * @return The topValue variable is being returned.
+   */
   public double getTopValue(){
     return topValue;
   }

@@ -59,6 +59,12 @@ public class VisionShooterConversion {
         return new ShooterConfiguration(distance, topMotor, bottomMotor, setHoodUp);
     }
 
+    /**
+     * > This function returns the hood status of the shooter at the given index
+     * 
+     * @param index The index of the shooter table to get the hood value from.
+     * @return A boolean value
+     */
     private boolean getHood(int index){
         
         if (index < 1){
@@ -72,6 +78,14 @@ public class VisionShooterConversion {
         return shooterTable[index].isHoodUp();
     }
 
+    /**
+     * It takes the index of the closest point in the shooter table, and the distance to the target,
+     * and returns the speed of the bottom motor
+     * 
+     * @param index The index of the shooter table that is closest to the distance.
+     * @param distance The distance to the target in inches
+     * @return The speed of the bottom motor.
+     */
     private double getBottomMotor(int index, double distance){
         // This is the code that determines the speed of the bottom motor. It is a linear interpolation
         // between the two closest points in the shooter table.
@@ -161,6 +175,13 @@ public class VisionShooterConversion {
         return index;
     }
 
+    /**
+     * It takes an angle and returns the distance that the robot should be from the target at that
+     * angle
+     * 
+     * @param angle The angle of the target from the limelight's perspective
+     * @return The distance from the target.
+     */
     private double getDistanceFromAngle(double angle){
         double distance = 0.0;
         for (int i = 1; i < visionTable.length; i++){
