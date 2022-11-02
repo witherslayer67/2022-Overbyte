@@ -97,7 +97,7 @@ public class ShooterSubsystem extends SubsystemBase {
     }else{
       //DataLogManager.log("SHOOTER: Nothing to shoot at!");
       // TODO Should we really stop, or run the motors at some idle speed, so that they will be ready more quickly when a target is found?
-      idle(); //og: stop();
+      stop(); //og: stop();
     }
 
     return shooterConfig.getDistance() != 0.0;
@@ -107,8 +107,8 @@ public class ShooterSubsystem extends SubsystemBase {
    * Set the top and bottom shooter motors to the idle speed.
    */
   public void idle(){
-    double topMotorSpeed = 2731.74 * Constants.falconRPMToUPS;
-    double bottomMotorSpeed = -3715.11 * Constants.falconRPMToUPS;
+    double topMotorSpeed = 9001 * Constants.falconRPMToUPS; //2731.74
+    double bottomMotorSpeed = -9001 * Constants.falconRPMToUPS; //-3715.11
 
     topShooterMotor.set(TalonFXControlMode.Velocity, topMotorSpeed);
     bottomShooterMotor.set(TalonFXControlMode.Velocity, bottomMotorSpeed);
@@ -224,6 +224,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    //idle();
     if (Constants.useCalibrateController) {
       if (Constants.calibrateController.getRawButton(Constants.runShooterButton)){
         getShooterValuesFromSticks();

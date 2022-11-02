@@ -42,14 +42,29 @@ public class PneumaticsSubsystem extends SubsystemBase {
     compressor.disable();
   }
 
+  /**
+   * This function returns the state of the compressor
+   * 
+   * @return The state of the compressor.
+   */
   public boolean get(){
     return pneumaticHub.getCompressor();
   }
 
+  /**
+   * This function returns the intakeSolenoids object
+   * 
+   * @return The intakeSolenoids variable is being returned.
+   */
   public DoubleSolenoid getIntakeSolenoids(){
     return intakeSolenoids;
   }
 
+  /**
+   * This function returns the shooterSolenoids variable
+   * 
+   * @return The shooterSolenoids
+   */
   public DoubleSolenoid getShooterSolenoids(){
     return shooterSolenoids;
   }

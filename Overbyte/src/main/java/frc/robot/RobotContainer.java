@@ -92,6 +92,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    // This is the code that is used to map the buttons on the controller to the commands that are run
+    // when the buttons are pressed.
     new JoystickButton(Constants.driveController, Constants.readyToShootButton).whenPressed(new ShootCommand(visionSubsystem, pneumaticsSubsystem, shooterSubsystem, storageSubsystem, intakeSubsystem));
     new JoystickButton(Constants.driveController, Constants.intakeButton).whenPressed(new IntakeCommand(intakeSubsystem, storageSubsystem));
     new JoystickButton(Constants.driveController, Constants.halfSpeedButton).whenReleased(()->driveSubsystem.toggleHalfSpeed());
@@ -132,6 +134,9 @@ public class RobotContainer {
     return driveSubsystem;
   }
 
+  /**
+   * This function updates the angle of the robot
+   */
   public void updateAngle() {
     driveSubsystem.updateAngle();
   }

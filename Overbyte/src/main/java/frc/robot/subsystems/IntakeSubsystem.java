@@ -53,6 +53,9 @@ public class IntakeSubsystem extends SubsystemBase {
     return (intakeSolenoids.get() == Value.kForward) ? true : false;
   }
 
+  /**
+   * This function sets the intake speed to -0.75 and sets the intaking boolean to true.
+   */
   public void runIntake(){
     setIntakeSpeed(-0.75);
     intaking = true;
